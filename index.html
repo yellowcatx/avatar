@@ -129,10 +129,31 @@
 
     <script>
       // Função para selecionar o avatar
+      function toggleDropdown() {
+        const dropdownMenu = document.getElementById("dropdownMenu");
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === "block" ? "none" : "block";
+      }
+
+      // Função para selecionar o avatar
       function selectAvatar(element) {
         const selectedAvatar = document.getElementById("selectedAvatar");
         selectedAvatar.src = element.src; // Atualiza o avatar principal
+        toggleDropdown(); // Fecha o dropdown após a seleção
       }
+
+      // Fecha o dropdown se clicar fora dele
+      window.onclick = function (event) {
+        if (!event.target.matches(".dropdown button")) {
+          const dropdowns = document.getElementsByClassName("dropdown-content");
+          for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.style.display === "block") {
+              openDropdown.style.display = "none";
+            }
+          }
+        }
+      };
     </script>
   </body>
 </html>
